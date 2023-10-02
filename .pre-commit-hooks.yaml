@@ -1,0 +1,6 @@
+-   id: mantid-release-note-check
+    name: release note check
+    description: checks that release note bullet points are the correct style
+    entry: mantid-release-note-check
+    language: python
+    stages: [commit]
