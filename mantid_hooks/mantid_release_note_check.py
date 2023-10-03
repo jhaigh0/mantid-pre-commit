@@ -21,7 +21,11 @@ def check_bullet_points(filenames: set[str]) -> int:
         with open(filename, 'r') as rn:
             lines = rn.readlines()
             for i in range(len(lines)):
-                bullet = lines[i].lstrip()[0]
+                line = lines[i].lstrip()
+                if len(lines[i]) - len(line) > 1 or len(line) == 0:
+                    # ignore nested bullet points and blank lines
+                    continue
+                bullet = line[0]
                 if bullet in ['*', '+']:
                     print(f"{filename} has incorrect bullet point style '{bullet}'. Please only use '-'.")
                     print(f"Fixing {filename}")
