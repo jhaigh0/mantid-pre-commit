@@ -18,7 +18,7 @@ def check_bullet_points(filenames: set[str]) -> int:
     retv = 0
 
     for filename in filenames:
-        with open(filename, 'r+') as rn:
+        with open(filename, 'r') as rn:
             lines = rn.readlines()
             for i in range(len(lines)):
                 bullet = lines[i].lstrip()[0]
@@ -28,6 +28,7 @@ def check_bullet_points(filenames: set[str]) -> int:
                     lines[i] = lines[i].replace(bullet, '-', 1)
                     retv = 1
 
+        with open(filename, 'w') as rn:
             rn.writelines(lines)
 
     return retv
